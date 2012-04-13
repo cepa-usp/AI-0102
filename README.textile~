@@ -1,0 +1,4 @@
+h1. Coordenadas retangulares
+
+Esta Atividade Interativa (AI) expõe o conceito de coordenadas retangulares em três dimensões como a interseção de três planos perpendiculares: x = x_0 define um plano perpendicular ao eixo x a x_0 unidades de distância da origem do sistema de referência. Analogamente para y e z. Deste modo, o único ponto que está contido nos três planos simultaneamente é aquele a x_0 unidades de distância ao longo de x, y_0 ao longo de y e z_0 ao longo de z. Esta informação é representada pelo terno (x_0, y_0, z_0) e constitui as coordenadas retangulares desse ponto.
+

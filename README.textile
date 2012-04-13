@@ -1,0 +1,3 @@
+h1. Puzzle de derivadas de polinômios
+
+Puzzle de gráficos de funções polinomiais e suas derivadas.
