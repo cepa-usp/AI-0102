@@ -1,5 +1,6 @@
 package 
 {
+	import cepa.utils.ToolTip;
 	import fl.transitions.easing.None;
 	import fl.transitions.Tween;
 	import flash.display.MovieClip;
@@ -143,6 +144,13 @@ package
 			infoScreen.addEventListener(MouseEvent.CLICK, openCloseInfoScreen);
 			botoes.creditos.addEventListener(MouseEvent.CLICK, openCloseAboutScreen);
 			aboutScreen.addEventListener(MouseEvent.CLICK, openCloseAboutScreen);
+			
+			var ttCreditos:ToolTip = new ToolTip(botoes.creditos, "Créditos", 11, 0.8, 200, 0.6, 0.1);
+			addChild(ttCreditos);
+			var ttOrientacoes:ToolTip = new ToolTip(botoes.orientacoesBtn, "Orientações", 11, 0.8, 200, 0.6, 0.1);
+			addChild(ttOrientacoes);
+			var ttvn:ToolTip = new ToolTip(valendoNota, "Valendo nota", 11, 0.8, 200, 0.6, 0.1);
+			addChild(ttvn);
 			
 			openCloseInfoScreen();
 		}
@@ -372,6 +380,10 @@ package
 					}
 				}
 			}
+			
+			setChildIndex(entrada, numChildren - 1);
+			setChildIndex(nextButton, numChildren - 1);
+			setChildIndex(okButon, numChildren - 1);
 		}
 		
 		//Ao clicar (mouseDown) em uma peça essa função é chamada, configurando alguns parâmetros para arraste da peca.
