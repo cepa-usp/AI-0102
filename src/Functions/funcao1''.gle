@@ -1,0 +1,24 @@
+size 14 10
+set hei 1
+
+begin graph
+   math
+   
+   ! Eixo x
+   xaxis min -5 max 5 dticks 5 dsubticks 1
+   xaxis lwidth 0.05
+   xticks lwidth 0.05
+   
+   ! Eixo y
+   yaxis min -20 max 50
+   yaxis lwidth 0.05
+   yticks off
+   
+   ylabels off
+   
+   ! Função
+   let d1 = 6*x+10
+   d1 lstyle 1 lwidth 0.1 color blue
+   d1 line
+   
+end graph

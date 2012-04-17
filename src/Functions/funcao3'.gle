@@ -1,0 +1,25 @@
+size 14 10
+set hei 1
+
+!set font texcmr
+begin graph
+   math
+   
+   ! Eixo x
+   xaxis min -3 max 3 dticks 3 dsubticks 1
+   xaxis lwidth 0.05
+   xticks lwidth 0.05
+   
+   ! Eixo y
+   yaxis min -1 max 10
+   yaxis lwidth 0.05
+   yticks off
+   
+   ylabels off
+   
+   ! Função
+   let d1 = 5*x^4+4*x^3+3*x^2+2*x+1
+   d1 lstyle 1 lwidth 0.1 color blue
+   d1 line
+   
+end graph

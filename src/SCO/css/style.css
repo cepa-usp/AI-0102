@@ -1,0 +1,61 @@
+.vec {
+  font-weight: bold;
+}
+
+.escalar {
+  font-style: italic;
+}
+
+#completion-message {
+  display: none;
+}
+
+.completion-message-on {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #880000;/* #005500;*/
+  /*background-color: #66CC66;
+  border: 1px solid #009932;   */
+  padding: 0px;
+  display: inline-block;
+}
+
+h3 {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 40px;
+}
+
+#ai {
+  display: inline-block;
+}
+
+#about, #about a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8px;
+  color: #888888;
+  font-size: small;
+}
+
+.right-answer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #008800;
+  padding: 0px;
+  display: inline-block;
+}
+
+.wrong-answer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #FF0000;
+  padding: 0px;
+  display: inline-block;
+}
+

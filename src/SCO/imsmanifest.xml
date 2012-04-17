@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest   identifier="CEPA_SCORM2004" version="1.0"
+			xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+			xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3"
+			xmlns:adlseq="http://www.adlnet.org/xsd/adlseq_v1p3"
+			xmlns:adlnav="http://www.adlnet.org/xsd/adlnav_v1p3"
+			xmlns:imsss="http://www.imsglobal.org/xsd/imsss"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd
+			http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd
+			http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd
+			http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd
+			http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd" >
+<metadata>
+	<schema>ADL SCORM</schema>
+	<schemaversion>2004 3rd Edition</schemaversion>
+</metadata>
+<organizations default="CEPA">
+	<organization identifier="CEPA">
+		<title>Funções trigonométricas</title>
+		<item identifier="AI0102_item1" identifierref="AI0102_item1_resource">
+			<title>Exercícios funções, derivadas e segundas derivadas</title>
+		</item>
+		<imsss:sequencing>
+			<imsss:controlMode choiceExit="true" flow="true"/>
+			<imsss:deliveryControls completionSetByContent="true" objectiveSetByContent="true"/>
+		</imsss:sequencing>
+	</organization>
+</organizations>
+<resources>
+	<resource identifier="AI0102_item1_resource" adlcp:scormType="sco" href="index.html" type="webcontent">
+		<file href="./index.html"/>
+		<file href="./AI-0102.swf"/>
+		<file href="./expressInstall.swf"/>
+		<file href="./js/SCORM_API_wrapper.js"/>
+		<file href="./js/ai-config.js"/>
+		<file href="./css/style.css"/>
+	</resource>
+</resources>
+</manifest>

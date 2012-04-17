@@ -1,0 +1,28 @@
+AI-0102
+-------
+
+Objetivo da Atividade Interativa (AI): treinar a percepção da relação entre uma função polinomial qualquer e sua derivada.
+
+Objetivo do usuário: organizar os gráficos (peças do quebra-cabeça) de modo que abaixo de cada função dada (e fixa) estajam sua derivada, f'(x), e sua segunda derivada, f''(x).
+
+Resolução: para resolver esta AI o usuário deve observar (mentalmente) a inclinação de cada função em cada abscissa e como ela é representada no gráfico da derivada. Algumas dicas:
+
+1) Se a função está crescendo (decrescendo) num x qualquer, o gráfico da derivada deve ser positivo (negativo) naquela posição.
+2) Se a função apresenta um máximo ou um mínimo num x qualquer, o gráfico da derivada deve cruzar o eixo x (derivada nula).
+
+Não é necessário mais do que essas duas regras para resolver os exercícios, e também não são necessários quaisquer cálculos.
+
+A forma mais rápida de resolver esta AI é, primeiramente, identificar os máximos e mínimos de cada f(x) dado e procurar os gráficos que têm zero naquelas abscissas [regra (2) acima]. Em seguida deve-se observar o sinal das derivadas [regra (1)].
+
+Este processo deve ser feito também com f'(x) e f''(x), lembrando que f''(x) é a derivada de f'(x), e que por isso as regras (1) e (2) acima também valem para eles.
+
+Como as funções desta AI são polinômios, é possível usar ainda a seguinte regra para facilitar a solução:
+
+3) Se f(x) é uma função polinomial de grau n, então sua derivada tem grau n-1.
+
+É isto que difere esta AI da AI-0104, que envolve funções não polinomiais.
+
+Observações:
+1) Esta AI usa SCORM para notificar o LMS (moodle) quanto ao aproveitamento do usuário, numa escala de 0 a 100 (inteiros apenas).
+2) Para orientações quanto às intereções com a AI, veja o menu de orientações (botão "?").
+3) Originalmente esta AI permitia a movimentação arbitrária das peças (gráficos), mas isto tornou-a demasiadamente complexa. Por conta disso, fixamos as funções (primeira linha).
