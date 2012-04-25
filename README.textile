@@ -1,3 +1,11 @@
-h1. Puzzle de derivadas de polinômios
+h1. Derivadas de funções polinomiais
 
-Puzzle de gráficos de funções polinomiais e suas derivadas.
+O objetivo desta Atividade Interativa é organizar os gráficos (peças) de modo que em cada coluna apareçam, de cima para baixo, a função f, sua derivada de primeira ordem f' e, finalmente, sua derivada de segunda ordem f''.
+
+
+
+Para isso, arraste os gráficos das funções para organizá-los. Ao soltar o gráfico em alguma posição ele trocará de posição com o gráfico presente no local. Ao terminar de organizá-los clique no botão "terminei" para conferir sua resposta.
+
+As peças corretas serão destacadas em verde; as incorretas, em vermelho. Passe o mouse sobre uma peça qualquer para ver as outras duas peças associadas a ela, isto é, a resposta correta.
+
+Você pode fazer quantos exercícios quiser, para treinar. Quando achar que já está pronto(a) para ser avaliado(a), pressione o botão "valendo nota" (você não poderá voltar atrás nesta decisão). A partir desse momento todas as suas tentativas serão contabilizadas e sua nota será a média aritmética das tentativas, de zero a cem pontos.

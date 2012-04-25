@@ -151,12 +151,17 @@ package
 			addChild(ttOrientacoes);
 			var ttvn:ToolTip = new ToolTip(valendoNota, "Valendo nota", 11, 0.8, 200, 0.6, 0.1);
 			addChild(ttvn);
+			var ttnovo:ToolTip = new ToolTip(nextButton, "Começa um novo exercício", 11, 0.8, 200, 0.6, 0.1);
+			addChild(ttnovo);
+			var ttTerminei:ToolTip = new ToolTip(okButon, "Avalia sua resposta", 11, 0.8, 200, 0.6, 0.1);
+			addChild(ttTerminei);
 			
-			openCloseInfoScreen();
+			//openCloseInfoScreen();
 		}
 		
 		private function openCloseAboutScreen(e:MouseEvent):void 
 		{
+			setChildIndex(aboutScreen, numChildren - 1);
 			if (aboutScreen.visible) aboutScreen.play();
 			else {
 				aboutScreen.gotoAndStop(1);
@@ -198,20 +203,23 @@ package
 				//fraseCompleted.visible = true;
 				valendoNota.visible = false;
 				valendoBoolean = false;
-				nextButton.visible = true;
+				nextButton.mouseEnabled = true;
+				nextButton.alpha = 1;
 				abreTelaMensagem(MSG_COMPLETED);
 			}else {
 				if (lastTimes > 0){
 					//fraseCompleted.visible = false;
 					valendoNota.visible = false;
-					nextButton.visible = false;
+					nextButton.mouseEnabled = false;
+					nextButton.alpha = 0.4;
 					valendoBoolean = true;
 					abreTelaMensagem(MSG_INCOMPLETE);
 				}
 				else {
 					//fraseCompleted.visible = false;
 					valendoNota.visible = true;
-					nextButton.visible = true;
+					nextButton.mouseEnabled = true;
+					nextButton.alpha = 1;
 					valendoBoolean = false;
 				}
 			}
@@ -263,7 +271,8 @@ package
 			
 			valendoBoolean = true;
 			valendoNota.visible = false;
-			nextButton.visible = false;
+			nextButton.mouseEnabled = false;
+			nextButton.alpha = 0.4;
 			
 			telaValendo.okBtn.removeEventListener(MouseEvent.CLICK, fazExercicioValer);
 			telaValendo.cancelBtn.removeEventListener(MouseEvent.CLICK, cancelaValendo);
@@ -562,7 +571,8 @@ package
 			
 			adicionaListenerGlowsCorretos();
 			
-			nextButton.visible = true;
+			nextButton.mouseEnabled = true;
+			nextButton.alpha = 1;
 		}
 		
 		//Adiciona eventListener nas peças no palco para mostrar as posições corretas das peças.
@@ -570,7 +580,7 @@ package
 		{
 			for (var i:int = 0; i < arrayPecas.length; i++) 
 			{
-				arrayPecas[i].addEventListener(MouseEvent.MOUSE_DOWN, coloreGrupoFuncoes);
+				arrayPecas[i].addEventListener(MouseEvent.MOUSE_OVER, coloreGrupoFuncoes);
 			}
 		}
 		
@@ -579,7 +589,7 @@ package
 		{
 			for (var i:int = 0; i < arrayPecas.length; i++) 
 			{
-				arrayPecas[i].removeEventListener(MouseEvent.MOUSE_DOWN, coloreGrupoFuncoes);
+				arrayPecas[i].removeEventListener(MouseEvent.MOUSE_OVER, coloreGrupoFuncoes);
 			}
 		}
 		
@@ -587,7 +597,7 @@ package
 		private function coloreGrupoFuncoes(e:MouseEvent):void 
 		{
 			removeGlowsErrados();
-			stage.addEventListener(MouseEvent.MOUSE_UP, coloreErrados);
+			stage.addEventListener(MouseEvent.MOUSE_OUT, coloreErrados);
 			
 			var tipoGrupo:String = String(e.target);
 			
