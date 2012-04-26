@@ -46,6 +46,8 @@ package
 			nextButton.removeEventListener(MouseEvent.CLICK, reset);
 			valendoNota.removeEventListener(MouseEvent.CLICK, mostraTelaValendo);
 			telaMensagens.okBTN.removeEventListener(MouseEvent.CLICK, escondeTelaMensagem);
+			botoes.tutorialBtn.removeEventListener(MouseEvent.CLICK, iniciaTutorial2);
+			botoes.tutorialBtn.addEventListener(MouseEvent.CLICK, iniciaTutorial);
 			removeListenerArrastePecas();
 			
 			initListaFuncoes();
@@ -61,6 +63,8 @@ package
 			pontuacao = 0;
 			
 			addListeners();
+			
+			iniciaTutorial();
 			
 			verificaStatusLMS();
 		}
@@ -144,6 +148,7 @@ package
 			infoScreen.addEventListener(MouseEvent.CLICK, openCloseInfoScreen);
 			botoes.creditos.addEventListener(MouseEvent.CLICK, openCloseAboutScreen);
 			aboutScreen.addEventListener(MouseEvent.CLICK, openCloseAboutScreen);
+			botoes.tutorialBtn.addEventListener(MouseEvent.CLICK, iniciaTutorial);
 			
 			var ttCreditos:ToolTip = new ToolTip(botoes.creditos, "Créditos", 11, 0.8, 200, 0.6, 0.1);
 			addChild(ttCreditos);
@@ -155,6 +160,8 @@ package
 			addChild(ttnovo);
 			var ttTerminei:ToolTip = new ToolTip(okButon, "Avalia sua resposta", 11, 0.8, 200, 0.6, 0.1);
 			addChild(ttTerminei);
+			
+			iniciaTutorial();
 			
 			//openCloseInfoScreen();
 		}
@@ -237,6 +244,9 @@ package
 		private function escondeTelaMensagem(e:MouseEvent):void 
 		{
 			telaMensagens.visible = false;
+			botoes.tutorialBtn.removeEventListener(MouseEvent.CLICK, iniciaTutorial);
+			botoes.tutorialBtn.addEventListener(MouseEvent.CLICK, iniciaTutorial2);
+			iniciaTutorial2();
 		}
 		
 		//Adiciona eventListeners a objetos no palco.
@@ -638,7 +648,7 @@ package
 		//Após mostrar a posição correta das peças essa função adiciona filtros de glow nas peças que estão na posição errada.
 		private function coloreErrados(e:MouseEvent):void 
 		{
-			stage.removeEventListener(MouseEvent.MOUSE_UP, coloreErrados);
+			stage.removeEventListener(MouseEvent.MOUSE_OUT, coloreErrados);
 			removeListenerGlowsCorretos();
 			funcao.visible = false;
 			derivadaPrimeira.visible = false;
@@ -805,5 +815,119 @@ package
 			scorm.get("cmi.completion_status");
 		}
 		//-------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Tutorial
+		private var posQuadradoArraste:Point = new Point();
+		private var balao:CaixaTexto;
+		private var balao2:CaixaTexto;
+		private var pointsTuto:Array;
+		private var pointsTuto2:Array;
+		private var tutoBaloonPos:Array;
+		private var tutoBaloonPos2:Array;
+		private var tutoPos:int;
+		private var tutoPos2:int;
+		private var tutoSequence:Array = ["Cada uma das peças do quebra-cabeça contém uma função polinomial.",
+										  "Três delas são funções f escolhidas ao acaso e foram colocadas na primeira linha.",
+										  "As seis peças que sobraram estão misturadas: três delas contém f', a derivada de f, e três contém a derivada de segunda ordem (f'').",
+										  "Sua tarefa é organizar essas seis peças (arraste-as) de modo que f' fique abaixo de f e f'', abaixo de f'.",
+										  "Para fazer isso você deverá analisar os pontos de máximo, de mínimo, de inflexão e o sinal das derivadas de f.",
+										  "Quando tiver concluído, pressione o botão \"terminei\" para avaliar sua resposta.",
+										  "Quando quiser começar um novo exercício, pressione \"novo\".",
+										  "Quando achar que já está pronto para ser avaliado(a), pressione o botão \"valendo nota\" e comece um novo exercício."];
+		private var tutoSequence2:Array = ["As peças corretas foram destacadas em verde; as incorretas, em vermelho.",
+											"Passe o mouse sobre uma peça para ver as outras duas associadas a ela."];
+
+		private var tweenX:Tween;
+		private var tweenY:Tween;
+		
+		/**
+		 * Inicia o tutorial da atividade.
+		 */								  
+		private function iniciaTutorial(e:MouseEvent = null):void 
+		{
+			tutoPos = 0;
+			if(balao == null){
+				balao = new CaixaTexto(true);
+				addChild(balao);
+				setChildIndex(balao, numChildren - 1);
+				balao.visible = false;
+				
+				pointsTuto = 	[new Point(240, 250),
+								new Point(240, 120),
+								new Point(240, 250),
+								new Point(240, 200),
+								new Point(240, 230),
+								new Point(100, 65),
+								new Point(100, 30),
+								new Point(540, 470)];
+								
+				tutoBaloonPos = [[CaixaTexto.LEFT, CaixaTexto.CENTER],
+								[CaixaTexto.LEFT, CaixaTexto.CENTER],
+								[CaixaTexto.LEFT, CaixaTexto.CENTER],
+								["", ""],
+								["", ""],
+								[CaixaTexto.LEFT, CaixaTexto.CENTER],
+								[CaixaTexto.LEFT, CaixaTexto.CENTER],
+								[CaixaTexto.RIGHT, CaixaTexto.LAST]];
+			}
+			
+			balao.removeEventListener(Event.CLOSE, closeBalao);
+			balao.setText(tutoSequence[tutoPos], tutoBaloonPos[tutoPos][0], tutoBaloonPos[tutoPos][1]);
+			balao.setPosition(pointsTuto[tutoPos].x, pointsTuto[tutoPos].y);
+			balao.addEventListener(Event.CLOSE, closeBalao);
+			balao.visible = true;
+			if (balao2 != null) balao2.visible = false;
+			setChildIndex(balao, numChildren - 1);
+		}
+		
+		private function iniciaTutorial2(e:MouseEvent = null):void 
+		{
+			tutoPos2 = 0;
+			if(balao2 == null){
+				balao2 = new CaixaTexto(true);
+				addChild(balao2);
+				setChildIndex(balao2, numChildren - 1);
+				balao2.visible = false;
+				
+				pointsTuto2 = 	[new Point(240, 250),
+								new Point(240, 380)];
+								
+				tutoBaloonPos2 = [[CaixaTexto.LEFT, CaixaTexto.CENTER],
+								[CaixaTexto.LEFT, CaixaTexto.CENTER]];
+			}
+			
+			balao2.removeEventListener(Event.CLOSE, closeBalao2);
+			balao2.setText(tutoSequence2[tutoPos2], tutoBaloonPos2[tutoPos2][0], tutoBaloonPos2[tutoPos2][1]);
+			balao2.setPosition(pointsTuto2[tutoPos2].x, pointsTuto2[tutoPos2].y);
+			balao2.addEventListener(Event.CLOSE, closeBalao2);
+			if (balao != null) balao.visible = false;
+			balao2.visible = true;
+			setChildIndex(balao2, numChildren - 1);
+		}
+		
+		private function closeBalao(e:Event):void 
+		{
+			tutoPos++;
+			if (tutoPos >= tutoSequence.length) {
+				balao.removeEventListener(Event.CLOSE, closeBalao);
+				balao.visible = false;
+				
+			}else {
+				balao.setText(tutoSequence[tutoPos], tutoBaloonPos[tutoPos][0], tutoBaloonPos[tutoPos][1]);
+				balao.setPosition(pointsTuto[tutoPos].x, pointsTuto[tutoPos].y);
+			}
+		}
+		
+		private function closeBalao2(e:Event):void 
+		{
+			tutoPos2++;
+			if (tutoPos2 >= tutoSequence2.length) {
+				balao2.removeEventListener(Event.CLOSE, closeBalao2);
+				balao2.visible = false;
+				
+			}else {
+				balao2.setText(tutoSequence2[tutoPos2], tutoBaloonPos2[tutoPos2][0], tutoBaloonPos2[tutoPos2][1]);
+				balao2.setPosition(pointsTuto2[tutoPos2].x, pointsTuto2[tutoPos2].y);
+			}
+		}
 	}
 }
