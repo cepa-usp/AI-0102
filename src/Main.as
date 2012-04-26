@@ -858,7 +858,7 @@ package
 								new Point(240, 230),
 								new Point(100, 65),
 								new Point(100, 30),
-								new Point(540, 470)];
+								new Point(510, 470)];
 								
 				tutoBaloonPos = [[CaixaTexto.LEFT, CaixaTexto.CENTER],
 								[CaixaTexto.LEFT, CaixaTexto.CENTER],
