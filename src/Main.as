@@ -42,12 +42,16 @@ package
 		 */
 		public function reset (e:MouseEvent = null)
 		{
+			balao.visible = false;
+			okButon.mouseEnabled = true;
+			okButon.alpha = 1;
+			
 			okButon.removeEventListener(MouseEvent.CLICK, debugPosicoes);
 			nextButton.removeEventListener(MouseEvent.CLICK, reset);
 			valendoNota.removeEventListener(MouseEvent.CLICK, mostraTelaValendo);
 			telaMensagens.okBTN.removeEventListener(MouseEvent.CLICK, escondeTelaMensagem);
 			botoes.tutorialBtn.removeEventListener(MouseEvent.CLICK, iniciaTutorial2);
-			botoes.tutorialBtn.addEventListener(MouseEvent.CLICK, iniciaTutorial);
+			botoes.tutorialBtn.addEventListener(MouseEvent.CLICK, iniciaTutorialClicado);
 			removeListenerArrastePecas();
 			
 			initListaFuncoes();
@@ -102,6 +106,9 @@ package
 		private var calculaPontuacao:Boolean;
 		private var valendoBoolean:Boolean;
 		
+		private var jaAbriuTutorial:Boolean = false;
+		private var jaAbriuTutorial2:Boolean = false;
+		
 		
 		/**
 		 * @private
@@ -148,7 +155,7 @@ package
 			infoScreen.addEventListener(MouseEvent.CLICK, openCloseInfoScreen);
 			botoes.creditos.addEventListener(MouseEvent.CLICK, openCloseAboutScreen);
 			aboutScreen.addEventListener(MouseEvent.CLICK, openCloseAboutScreen);
-			botoes.tutorialBtn.addEventListener(MouseEvent.CLICK, iniciaTutorial);
+			botoes.tutorialBtn.addEventListener(MouseEvent.CLICK, iniciaTutorialClicado);
 			
 			var ttCreditos:ToolTip = new ToolTip(botoes.creditos, "Créditos", 11, 0.8, 200, 0.6, 0.1);
 			addChild(ttCreditos);
@@ -244,7 +251,7 @@ package
 		private function escondeTelaMensagem(e:MouseEvent):void 
 		{
 			telaMensagens.visible = false;
-			botoes.tutorialBtn.removeEventListener(MouseEvent.CLICK, iniciaTutorial);
+			botoes.tutorialBtn.removeEventListener(MouseEvent.CLICK, iniciaTutorialClicado);
 			botoes.tutorialBtn.addEventListener(MouseEvent.CLICK, iniciaTutorial2);
 			iniciaTutorial2();
 		}
@@ -413,7 +420,9 @@ package
 				stage.addEventListener(MouseEvent.MOUSE_UP, checkUpPosition);
 				
 				dragingMC = e.target as MovieClip;
-				setChildIndex(dragingMC, numChildren - 1);
+				setChildIndex(dragingMC, numChildren - 2);
+				setChildIndex(balao, numChildren - 1);
+				//setChildIndex(balao2, numChildren - 1);
 				dragingMC.alpha = 0.8;
 				inicialPosition = new Point(dragingMC.x, dragingMC.y);
 				dragingMC.startDrag();
@@ -457,8 +466,8 @@ package
 							//var fundoDropTarget:MovieClip = this["fundo" + String(i + 1) + "_" + String(j + 1)];
 							//dropTargetMC = pecasDicionario[fundoDropTarget];
 							//
-							//setChildIndex(dropTargetMC, numChildren - 1);
-							//setChildIndex(dragingMC, numChildren - 1);
+							//setChildIndex(dropTargetMC, numChildren - 2);
+							//setChildIndex(dragingMC, numChildren - 2);
 						//}
 					//}
 				//}
@@ -496,8 +505,8 @@ package
 				var fundoDropTarget:MovieClip = this["fundo" + String(indiceY) + "_" + String(indiceX)];
 				dropTargetMC = pecasDicionario[fundoDropTarget];
 				
-				setChildIndex(dropTargetMC, numChildren - 1);
-				setChildIndex(dragingMC, numChildren - 1);
+				setChildIndex(dropTargetMC, numChildren - 2);
+				setChildIndex(dragingMC, numChildren - 2);
 				
 				tweenXDraging = new Tween(dragingMC, "x", None.easeNone, dragingMC.x, fundoDropTarget.x, tempoTween, true);
 				tweenYDraging = new Tween(dragingMC, "y", None.easeNone, dragingMC.y, fundoDropTarget.y, tempoTween, true);
@@ -524,6 +533,9 @@ package
 		//Também calcula a pontuação de acordo com o número de peças corretamente posicionadas, caso esteja valendo a pontuação é salva no LMS.
 		private function debugPosicoes(e:MouseEvent):void
 		{
+			okButon.mouseEnabled = false;
+			okButon.alpha = 0.4;
+			
 			removeListenerArrastePecas();
 			
 			var tipo1:String = String(pecasDicionario[fundo1_1]);
@@ -703,6 +715,7 @@ package
 			if (connected) {
  
 				// Verifica se a AI já foi concluída.
+				scorm.set("cmi.exit", "suspend");
 				var status:String = scorm.get("cmi.completion_status");	
 				
 				switch(status)
@@ -842,8 +855,16 @@ package
 		/**
 		 * Inicia o tutorial da atividade.
 		 */								  
+		
+		private function iniciaTutorialClicado(e:MouseEvent = null):void {
+			jaAbriuTutorial = false;
+			iniciaTutorial();
+		}
+		
 		private function iniciaTutorial(e:MouseEvent = null):void 
 		{
+			if (jaAbriuTutorial) return;
+			jaAbriuTutorial = true;
 			tutoPos = 0;
 			if(balao == null){
 				balao = new CaixaTexto(true);
@@ -881,6 +902,8 @@ package
 		
 		private function iniciaTutorial2(e:MouseEvent = null):void 
 		{
+			if (jaAbriuTutorial2) return;
+			jaAbriuTutorial2 = true;
 			tutoPos2 = 0;
 			if(balao2 == null){
 				balao2 = new CaixaTexto(true);

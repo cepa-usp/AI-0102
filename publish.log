@@ -1,8 +1,7 @@
 Copying from /c/Users/Luciano Lucena/Documents/PROJETOS/UNIVESP/GitHub/AI-0102 to cepa@arquivos.atp.usp.br:/work/PUBLICACAO/atividades-interativas/AI-0102
 building file list ... done
 ./
-AI-0102.swf
 AI-0102_SCO.zip
 
-sent 188194 bytes  received 1763 bytes  379914.00 bytes/sec
-total size is 207328  speedup is 1.09
+sent 96568 bytes  received 922 bytes  194980.00 bytes/sec
+total size is 206787  speedup is 2.12
